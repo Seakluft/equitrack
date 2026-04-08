@@ -1,0 +1,66 @@
+.container {
+  padding: 1.5rem;
+  background: var(--cream);
+  border-radius: 16px;
+  border: 1px solid var(--leather);
+  margin-top: 1rem;
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.filters select {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--leather);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  text-align: center;
+  border-bottom: 3px solid var(--forest);
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--forest);
+  margin: 0.5rem 0 0 0;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.list h4 {
+  margin-bottom: 0.5rem;
+  color: var(--leather);
+  border-bottom: 1px solid var(--leather);
+}
+
+.list div {
+  padding: 0.25rem 0;
+  font-size: 0.9rem;
+}
