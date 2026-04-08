@@ -1,73 +1,46 @@
-# React + TypeScript + Vite
+# EquiTrack
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+EquiTrack est une application de suivi des cours d'équitation, spécialement conçue pour les cavaliers montant le samedi.
 
-Currently, two official plugins are available:
+## Fonctionnalités
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Calendrier du Samedi :** Affiche uniquement les samedis de la saison (Septembre à Juin).
+- **Synchronisation Vacances Scolaires (Zone B) :** Cache automatiquement les samedis de vacances, tout en conservant le premier samedi après la fin des cours.
+- **Suivi de Présence :** Marquez votre présence ou absence. Les séances d'absence sont grisées/barrées.
+- **Personnalisation :** Ajoutez vos chevaux et choisissez la discipline pratiquée.
+- **Statistiques Avancées :**
+  - Nombre de séances par cheval et par discipline.
+  - Estimation des calories brûlées.
+  - Calcul du coût par séance basé sur la licence et le forfait.
+- **Docker Ready :** Lancez l'application en une commande.
 
-## React Compiler
+## Installation avec Docker
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Assurez-vous d'avoir Docker et Docker Compose installés.
+2. Clonez le dépôt :
+   ```bash
+   git clone https://github.com/Seakluft/equitrack.git
+   cd equitrack
+   ```
+3. Lancez l'application :
+   ```bash
+   docker-compose up -d
+   ```
+4. Ouvrez votre navigateur sur `http://localhost:8080`.
 
-## Expanding the ESLint configuration
+## Développement
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Pour lancer en mode développement :
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Technologies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- React 19 + TypeScript
+- Vite
+- CSS Modules (Thème "Equestrian Classic")
+- API data.education.gouv.fr (Calendrier scolaire)
+- Lucide React (Icones)
