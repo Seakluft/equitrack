@@ -81,6 +81,17 @@ const AppContent: React.FC = () => {
                 onChange={(e) => updateSettings({ ...settings, forfaitPrice: Number(e.target.value) })}
               />
             </div>
+            <div className="field">
+              <label>Zone Scolaire</label>
+              <select 
+                value={settings.zone} 
+                onChange={(e) => updateSettings({ ...settings, zone: e.target.value })}
+              >
+                <option value="Zone A">Zone A</option>
+                <option value="Zone B">Zone B</option>
+                <option value="Zone C">Zone C</option>
+              </select>
+            </div>
           </div>
 
           <div className="settingsGroup" style={{ marginTop: '2rem' }}>

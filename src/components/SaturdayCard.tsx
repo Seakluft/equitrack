@@ -26,23 +26,25 @@ const SaturdayCard: React.FC<SaturdayCardProps> = ({ date }) => {
   const lesson = lessons.find((l) => l.date === dateStr);
 
   const togglePresence = () => {
-    if (lesson) {
-      addLesson({ ...lesson, isPresent: !lesson.isPresent });
-    } else {
-      addLesson({
-        id: crypto.randomUUID(),
-        date: dateStr,
-        isPresent: true,
-        duration: 60,
-        discipline: 'Flatwork',
-      });
-    }
+    const baseLesson = lesson || {
+      id: crypto.randomUUID(),
+      date: dateStr,
+      isPresent: false,
+      duration: 60,
+      discipline: 'Flatwork',
+    };
+    addLesson({ ...baseLesson, isPresent: !baseLesson.isPresent });
   };
 
   const updateLesson = (updates: Partial<Lesson>) => {
-    if (lesson) {
-      addLesson({ ...lesson, ...updates });
-    }
+    const baseLesson = lesson || {
+      id: crypto.randomUUID(),
+      date: dateStr,
+      isPresent: true,
+      duration: 60,
+      discipline: 'Flatwork',
+    };
+    addLesson({ ...baseLesson, ...updates });
   };
 
   const currentHorse = horses.find((h) => h.id === lesson?.horseId);
@@ -52,53 +54,51 @@ const SaturdayCard: React.FC<SaturdayCardProps> = ({ date }) => {
       <div className={styles.date}>{format(date, 'd MMM yyyy', { locale: fr })}</div>
 
       <button className={styles.toggle} onClick={togglePresence}>
-        {lesson?.isPresent ? 'Présent' : 'Absent/Inactif'}
+        {lesson?.isPresent ? 'Présent' : 'Absent'}
       </button>
 
-      {lesson?.isPresent && (
-        <div className={styles.form}>
-          <div className={styles.icons}>
-            {lesson.discipline && (
-              <img
-                src={DISCIPLINE_ICONS[lesson.discipline]}
-                className={styles.icon}
-                alt={lesson.discipline}
-                title={lesson.discipline}
-              />
-            )}
-            {currentHorse?.iconUrl && (
-              <img src={currentHorse.iconUrl} className={styles.icon} alt={currentHorse.name} />
-            )}
-          </div>
-          
-          {currentHorse && <span className={styles.horseName}>{currentHorse.name}</span>}
-
-          <select
-            className={styles.select}
-            value={lesson.horseId || ''}
-            onChange={(e) => updateLesson({ horseId: e.target.value })}
-          >
-            <option value="">Choisir un cheval</option>
-            {horses.map((h) => (
-              <option key={h.id} value={h.id}>
-                {h.name}
-              </option>
-            ))}
-          </select>
-
-          <select
-            className={styles.select}
-            value={lesson.discipline || ''}
-            onChange={(e) => updateLesson({ discipline: e.target.value as Discipline })}
-          >
-            {Object.keys(INTENSITIES).map((d) => (
-              <option key={d} value={d}>
-                {d}
-              </option>
-            ))}
-          </select>
+      <div className={styles.form}>
+        <div className={styles.icons}>
+          {(lesson?.discipline) && (
+            <img
+              src={DISCIPLINE_ICONS[lesson.discipline]}
+              className={styles.icon}
+              alt={lesson.discipline}
+              title={lesson.discipline}
+            />
+          )}
+          {currentHorse?.iconUrl && (
+            <img src={currentHorse.iconUrl} className={styles.icon} alt={currentHorse.name} />
+          )}
         </div>
-      )}
+        
+        {currentHorse && <span className={styles.horseName}>{currentHorse.name}</span>}
+
+        <select
+          className={styles.select}
+          value={lesson?.horseId || ''}
+          onChange={(e) => updateLesson({ horseId: e.target.value })}
+        >
+          <option value="">Choisir un cheval</option>
+          {horses.map((h) => (
+            <option key={h.id} value={h.id}>
+              {h.name}
+            </option>
+          ))}
+        </select>
+
+        <select
+          className={styles.select}
+          value={lesson?.discipline || 'Flatwork'}
+          onChange={(e) => updateLesson({ discipline: e.target.value as Discipline })}
+        >
+          {Object.keys(INTENSITIES).map((d) => (
+            <option key={d} value={d}>
+              {d}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 };

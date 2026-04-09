@@ -17,16 +17,20 @@ export const isHolidaySaturday = (saturday: Date, holidays: Holiday[]): boolean 
 
     // If Saturday falls within the holiday interval
     if (sDay >= holidayStart && sDay <= holidayEnd) {
-      // Rule: If courses end Friday (start_date), Saturday (day after) is still a lesson.
-      // So if Saturday is holidayStart or holidayStart + 1 day, it's still a lesson day.
-      const dayAfterStart = addDays(holidayStart, 1);
-      if (isSameDay(sDay, holidayStart) || isSameDay(sDay, dayAfterStart)) {
-        return false; // Not a "hidden" holiday Saturday
+      // Standard rule: school holidays in France usually start on a Saturday AFTER classes.
+      // So the Saturday of the start_date is often the last day of class.
+      // However, the API often marks start_date as the Saturday morning.
+      // We will consider it a holiday ONLY if it's strictly AFTER the start_date 
+      // OR if the description doesn't imply it's the start day.
+      
+      // If it's the very first day of holidays (Saturday), it's usually the last lesson.
+      if (isSameDay(sDay, holidayStart)) {
+        return false; 
       }
-      return true; // Hidden holiday Saturday
+      return true;
     }
   }
-  return false; // Regular lesson day
+  return false;
 };
 
 export const formatID = (date: Date): string => format(date, 'yyyy-MM-dd');

@@ -50,7 +50,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   useEffect(() => {
     const fetchHolidays = async () => {
       try {
-        const url = `https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-calendrier-scolaire/records?where=zones%3D%22Zone%20B%22&limit=100`;
+        const zoneEnc = encodeURIComponent(settings.zone);
+        const url = `https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-calendrier-scolaire/records?where=zones%3D%22${zoneEnc}%22&limit=100`;
         const response = await fetch(url);
         const data = await response.json();
         
