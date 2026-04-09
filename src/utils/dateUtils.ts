@@ -1,9 +1,11 @@
 import { addDays, eachDayOfInterval, format, isSaturday, isSameDay, startOfDay, parseISO } from 'date-fns';
-import { Holiday } from '../types';
+import type { Holiday } from '../types';
 
 export const getSaturdays = (start: string, end: string): Date[] => {
   const interval = { start: parseISO(start), end: parseISO(end) };
-  return eachDayOfInterval(interval).filter(isSaturday).map(startOfDay);
+  return eachDayOfInterval(interval)
+    .filter((date) => isSaturday(date))
+    .map((date) => startOfDay(date));
 };
 
 export const isHolidaySaturday = (saturday: Date, holidays: Holiday[]): boolean => {

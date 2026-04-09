@@ -2,8 +2,9 @@ import React from 'react';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { useApp } from '../context/AppContext';
-import { Lesson, Discipline } from '../types';
+import type { Lesson, Discipline } from '../types';
 import styles from './SaturdayCard.module.css';
+
 import { INTENSITIES } from '../constants';
 
 interface SaturdayCardProps {

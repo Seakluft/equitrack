@@ -2,5 +2,5 @@ services:
   equitrack:
     build: .
     ports:
-      - "8080:80"
+      - "7654:80"
     restart: always

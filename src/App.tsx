@@ -3,11 +3,11 @@ import { useApp, AppProvider } from './context/AppContext';
 import { getSaturdays, isHolidaySaturday } from './utils/dateUtils';
 import SaturdayCard from './components/SaturdayCard';
 import StatsView from './components/StatsView';
-import { Horse as HorseIcon, BarChart, Settings as SettingsIcon } from 'lucide-react';
+import { Activity as HorseIcon, BarChart, Settings as SettingsIcon } from 'lucide-react';
 import './App.css';
 
 const AppContent: React.FC = () => {
-  const { settings, holidays, isLoading, updateSettings, horses, addHorse } = useApp();
+  const { settings, holidays, isLoading, updateSettings, addHorse } = useApp();
   const [activeTab, setActiveTab] = useState<'calendar' | 'stats'>('calendar');
   const [newHorseName, setNewHorseName] = useState('');
   const [newHorseIcon, setNewHorseIcon] = useState('https://cdn-icons-png.flaticon.com/512/3063/3063111.png');

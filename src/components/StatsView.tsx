@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useApp } from '../context/AppContext';
 import { INTENSITIES } from '../constants';
 import styles from './StatsView.module.css';
-import { format, isWithinInterval, parseISO, startOfYear, endOfYear } from 'date-fns';
+import { isWithinInterval, parseISO, startOfYear, endOfYear } from 'date-fns';
 
 const StatsView: React.FC = () => {
   const { lessons, horses, settings } = useApp();

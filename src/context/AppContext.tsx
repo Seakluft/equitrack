@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Horse, Lesson, Settings, Holiday } from '../types';
+import type { Horse, Lesson, Settings, Holiday } from '../types';
 import { DEFAULT_HORSES, DEFAULT_SETTINGS } from '../constants';
 
 interface AppContextType {

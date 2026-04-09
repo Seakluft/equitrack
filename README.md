@@ -26,7 +26,7 @@ EquiTrack est une application de suivi des cours d'équitation, spécialement co
    ```bash
    docker-compose up -d
    ```
-4. Ouvrez votre navigateur sur `http://localhost:8080`.
+4. Ouvrez votre navigateur sur `http://localhost:7654`.
 
 ## Développement
 

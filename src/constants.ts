@@ -1,4 +1,4 @@
-import { Discipline } from './types';
+import type { Discipline } from './types';
 
 export const INTENSITIES: Record<Discipline, number> = {
   Jumping: 5.0,
